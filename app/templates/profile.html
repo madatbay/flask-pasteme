@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col justify-center items-center p-4">
+  <h1 class="text-4xl mb-4">{{current_user.username}}</h1>
+  <p>Features will be added soon</p>
+    <p class="text-9xl">🤓</p>
+  <a href="{{ url_for("logout") }}" class="text-blue-500">Sign out</a>
+</div>
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<div class="flex flex-col justify-center items-center p-4">
+  <h1 class="text-4xl mb-4">My paste board</h1>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {% for board in boards %}
+    <div class="flex flex-col p-4 border rounded shadow-md">
+      <p class="text-2xl">{{board.title}}</p>
+      <hr>
+      <p class="mt-2">{{board.body}}</p>
+      <span class="bg-gray-100 block p-2 rounded-md text-xs mt-2 hover:bg-gray-200 transition">{{board.created_at}}</span>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+{% endblock content %}

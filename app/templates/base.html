@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <title>PasteME</title>
+  </head>
+  <body class="bg-gray-50">
+    <nav class="bg-blue-200 mb-4">
+      <div class="container mx-auto flex justify-between p-4">
+        <a href="{{ url_for("index") }}" class="flex items-center text-blue-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            />
+          </svg>
+          PasteME
+        </a>
+        {% if current_user.is_authenticated %}
+          <div class="flex text-gray-700 space-x-8">
+            <a href="{{ url_for("paste_board") }}" class="flex items-center hover:text-blue-500 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+            </svg>
+            My Board</a>
+            <a href="{{ url_for("create_snippet") }}" class="flex items-center hover:text-blue-500 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+            </svg>
+            Paste</a>
+            <a href="{{url_for("profile")}}" class="flex items-center hover:text-blue-500 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+            </svg>
+            {{current_user.username}}</a>
+          </div>
+        {% else %}
+          <a
+            href="{{ url_for("login") }}"
+            class="
+              text-white
+              bg-blue-600
+              px-2
+              py-2
+              rounded
+              hover:bg-blue-700
+              transition
+            "
+            >Get started</a
+          >
+        {% endif %}
+        </div>
+    </nav>
+    <div class="container mx-auto bg-white shadow-md p-4 rounded-md text-gray-600">{% block content %}{% endblock %}</div>
+  </body>
+</html>
